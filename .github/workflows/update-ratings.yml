@@ -28,10 +28,22 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: التحقق من وجود سر Ahrefs
+        id: secret
+        env:
+          AHREFS_API_KEY: ${{ secrets.AHREFS_API_KEY }}
+        run: |
+          if [ -n "$AHREFS_API_KEY" ]; then echo "available=true" >> "$GITHUB_OUTPUT"; else echo "available=false" >> "$GITHUB_OUTPUT"; fi
+
       - name: جلب قيم Ahrefs
+        if: steps.secret.outputs.available == 'true'
         env:
           AHREFS_API_KEY: ${{ secrets.AHREFS_API_KEY }}
         run: python3 scripts/fetch_ahrefs.py
+
+      - name: الاحتفاظ بالبيانات الحالية عند غياب السر
+        if: steps.secret.outputs.available != 'true'
+        run: echo 'AHREFS_API_KEY غير مضاف بعد. تم تجاوز التحديث دون فشل أو تنبيه.'
 
       - name: حفظ البيانات المحدثة
         run: |
