@@ -1,0 +1,46 @@
+name: تحديث ترتيب Domain Rating
+
+on:
+  schedule:
+    # تقريبًا كل خمسة أيام، في وقت غير مستدير لتقليل تأخير GitHub.
+    - cron: '17 3 */5 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-ratings
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: جلب المستودع
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: إعداد Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: جلب قيم Ahrefs
+        env:
+          AHREFS_API_KEY: ${{ secrets.AHREFS_API_KEY }}
+        run: python3 scripts/fetch_ahrefs.py
+
+      - name: حفظ البيانات المحدثة
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ratings.json
+          if git diff --cached --quiet; then
+            echo 'لا توجد تغييرات في البيانات.'
+          else
+            git commit -m 'تحديث ترتيب Domain Rating'
+            git push
+          fi

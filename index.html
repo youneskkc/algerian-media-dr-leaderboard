@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="لوحة ترتيب مواقع الإعلام الجزائري حسب Domain Rating من Ahrefs، بتحديث دوري كل خمسة أيام." />
+    <meta name="theme-color" content="#081426" />
+    <title>ترتيب الإعلام الجزائري | Domain Rating</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="الرئيسية">
+          <span class="brand-mark">DR</span>
+          <span>
+            <strong>ترتيب الإعلام الجزائري</strong>
+            <small>Algerian Media Domain Rating</small>
+          </span>
+        </a>
+        <div class="topbar-meta">
+          <span class="status-dot"></span>
+          <span>تحديث دوري كل خمسة أيام</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero-section">
+          <div class="hero-copy">
+            <p class="eyebrow">لوحة مؤشرات مفتوحة</p>
+            <h1>من يتصدر المشهد الرقمي الجزائري؟</h1>
+            <p class="hero-description">
+              ترتيب استكشافي لمواقع الصحف والوكالات والمنصات الإعلامية الجزائرية وفق
+              <strong>Domain Rating</strong>، وهو مؤشر قوة ملف الروابط الخلفية للنطاق.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-button" href="#leaderboard">استكشف الترتيب <span>↓</span></a>
+              <a class="secondary-button" href="https://ahrefs.com/" target="_blank" rel="noopener">عن مقياس Ahrefs ↗</a>
+            </div>
+          </div>
+          <div class="hero-card" aria-label="ملخص الترتيب">
+            <div class="hero-card-label">أعلى قيمة DR</div>
+            <div id="hero-top-dr" class="hero-big-number">--</div>
+            <div id="hero-top-name" class="hero-top-name">جارٍ تحميل البيانات</div>
+            <div class="hero-card-line"><span>المواقع المتابعة</span><strong id="hero-sites-count">--</strong></div>
+            <div class="hero-card-line"><span>آخر تحديث</span><strong id="hero-updated">--</strong></div>
+          </div>
+        </section>
+
+        <section id="leaderboard" class="leaderboard-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">الترتيب الحالي</p>
+              <h2>لوحة المتصدرين</h2>
+            </div>
+            <div class="data-status" id="data-status" aria-live="polite">جارٍ تحميل البيانات...</div>
+          </div>
+
+          <div class="stats-grid" aria-label="إحصاءات الترتيب">
+            <div class="stat-card"><span>إجمالي الجهات</span><strong id="stat-total">--</strong></div>
+            <div class="stat-card"><span>DR أعلى من 50</span><strong id="stat-over-50">--</strong></div>
+            <div class="stat-card"><span>متوسط DR</span><strong id="stat-average">--</strong></div>
+            <div class="stat-card"><span>بيانات قديمة</span><strong id="stat-stale">--</strong></div>
+          </div>
+
+          <div class="toolbar">
+            <label class="search-box">
+              <span aria-hidden="true">⌕</span>
+              <input id="search-input" type="search" placeholder="ابحث باسم الجهة أو النطاق..." autocomplete="off" />
+            </label>
+            <label class="select-box">
+              <span>التصنيف</span>
+              <select id="category-filter"><option value="all">كل الجهات</option></select>
+            </label>
+            <label class="select-box">
+              <span>الترتيب</span>
+              <select id="sort-select">
+                <option value="dr-desc">الأعلى DR</option>
+                <option value="dr-asc">الأدنى DR</option>
+                <option value="name">الاسم أبجديًا</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">الترتيب</th>
+                  <th scope="col">الجهة الإعلامية</th>
+                  <th scope="col">التصنيف</th>
+                  <th scope="col">النطاق</th>
+                  <th scope="col" class="dr-column">DR</th>
+                  <th scope="col">آخر تحقق</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard-body"></tbody>
+            </table>
+            <div id="empty-state" class="empty-state" hidden>لا توجد نتائج مطابقة للبحث الحالي.</div>
+          </div>
+          <p class="table-note">الترتيب مبني على آخر قيمة ناجحة محفوظة. المواقع التي يتعذر فحصها مؤقتًا تحتفظ بآخر قيمة معروفة وتظهر بعلامة «بيانات قديمة».</p>
+        </section>
+
+        <section class="methodology-section">
+          <div>
+            <p class="eyebrow">كيف تُقرأ اللوحة؟</p>
+            <h2>مؤشر للسلطة الرقمية، وليس حكمًا على جودة المحتوى</h2>
+          </div>
+          <div class="methodology-copy">
+            <p>يقيس Domain Rating قوة ملف الروابط الخلفية للنطاق على مقياس من 0 إلى 100. لا يمثل المؤشر عدد القراء أو جودة التغطية أو الاستقلالية التحريرية، ولذلك يجب قراءته كإشارة SEO واحدة ضمن مؤشرات أخرى.</p>
+            <p class="source-credit"><strong>Domain Rating by <a href="https://ahrefs.com/" target="_blank" rel="noopener">Ahrefs</a></strong> · تحديث آلي عبر GitHub Actions · البيانات المعروضة لا تشمل إلا القائمة التي اجتازت مرحلة الفرز الأولي.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>مشروع بحثي مفتوح حول الحضور الرقمي للإعلام الجزائري</span>
+        <span id="footer-updated">آخر تحديث: --</span>
+      </footer>
+    </div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
